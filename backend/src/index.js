@@ -6,6 +6,8 @@ import {clerkMiddleware} from '@clerk/express';
 import { errorHandler } from './middleware/error.middleware.js';
 import userRoute from "./routes/user.route.js"
 import postRoute from "./routes/post.route.js"
+import commentRoute from "./routes/comment.route.js"
+import notificationRoute from "./routes/notification.route.js"
 import { ENV } from './config/env.js';
 import { connectDB } from './config/db.js';
 
@@ -20,6 +22,8 @@ connectDB()
 
 app.use("/api/users", userRoute)
 app.use("/api/posts", postRoute)
+app.use("/api/notifications", notificationRoute)
+app.use("/api/comments", commentRoute)
 
 app.use(errorHandler)
 
