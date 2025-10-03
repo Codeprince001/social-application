@@ -10,12 +10,14 @@ import commentRoute from "./routes/comment.route.js"
 import notificationRoute from "./routes/notification.route.js"
 import { ENV } from './config/env.js';
 import { connectDB } from './config/db.js';
+import { arcjetMiddleware } from './middleware/arcjet.middleware.js';
 
 const app = express();
 dotenv.config();
 app.use(cors());
 app.use(express.json());
 app.use(clerkMiddleware());
+app.use(arcjetMiddleware)
 
 connectDB()
 
