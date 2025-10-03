@@ -82,6 +82,8 @@ export const deleteComment = asyncHandler(async (req, res) => {
     await Post.findByIdAndUpdate(comment.post, { $pull: { comments: comment._id } });
 
     await Comment.findByIdAndDelete(commentId);
-    
+
+    await Notification.deleteMany({ comment: commentId });
+
     res.status(200).json({ message: 'Comment deleted successfully' });
 });
