@@ -19,7 +19,6 @@ app.use(express.json());
 app.use(clerkMiddleware());
 app.use(arcjetMiddleware)
 
-connectDB()
 
 
 app.use("/api/users", userRoute)
@@ -29,6 +28,23 @@ app.use("/api/comments", commentRoute)
 
 app.use(errorHandler)
 
-app.listen(ENV.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT || 3000}`);
-});
+
+
+const startServer = async () => {
+  try {
+    await connectDB()
+    if (ENV.NODE_ENV !== "production"){
+      app.listen(ENV.PORT, () => { console.log(`Server is running on port ${process.env.PORT || 3000}`);});
+    }
+
+
+  } catch (error){
+    console.log("Failed to start development server", error.message)
+  }
+}
+
+startServer()
+
+
+// vercel production
+export default app
