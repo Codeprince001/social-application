@@ -13,10 +13,10 @@ import { connectDB } from './config/db.js';
 import { arcjetMiddleware } from './middleware/arcjet.middleware.js';
 
 const app = express();
+app.use(clerkMiddleware());
 dotenv.config();
 app.use(cors());
 app.use(express.json());
-app.use(clerkMiddleware());
 app.use(arcjetMiddleware)
 
 
@@ -27,6 +27,10 @@ app.use("/api/notifications", notificationRoute)
 app.use("/api/comments", commentRoute)
 
 app.use(errorHandler)
+
+app.get("/", async(req, res) => {
+  res.send("Hello Server")
+})
 
 
 

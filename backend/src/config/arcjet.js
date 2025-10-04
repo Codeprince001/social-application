@@ -3,6 +3,8 @@ import { ENV } from "./env.js"
 
 export const aj = arcjet({
     key: ENV.ARCJET_KEY,
+    log: console,
+    client: "express",
     characteristics: ["ip.src"],
 
 
