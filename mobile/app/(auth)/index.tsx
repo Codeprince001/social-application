@@ -11,7 +11,7 @@ export default function Index() {
       <View className="flex-1 px-8 justify-between">
         <View className="flex-1 justify-center">
           {/* Onboarding Image */}
-          <View>
+          <View className="mx-auto">
             <Image
               source={require("../../assets/images/auth1.png")}
               className="size-96"
